@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b50aff81-4e8c-416a-98a0-e84affa33fb1" name="Changes" comment="tired">
-      <change afterPath="$PROJECT_DIR$/src/test/BoardTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/ULHashMapTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tictactoe/ConsoleInterface.java" afterDir="false" />
+    <list default="true" id="b50aff81-4e8c-416a-98a0-e84affa33fb1" name="Changes" comment="i dont know how im going to turn this into a game">
+      <change afterPath="$PROJECT_DIR$/src/tictactoe/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/powell_j.p2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/powell_j.p2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/BoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/BoardTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tictactoe/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictactoe/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tictactoe/ULHashMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictactoe/ULHashMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tictactoe/ConsolePlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictactoe/ConsolePlayer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +51,20 @@
       <recent name="tictactoe" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="tictactoe.Main" />
+      <module name="powell_j.p2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tictactoe.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BoardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="powell_j.p2" />
       <extension name="coverage">
@@ -71,6 +82,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.BoardTest" />
       </list>
     </recent_temporary>
@@ -98,12 +110,20 @@
       <option name="project" value="LOCAL" />
       <updated>1696303178890</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="i dont know how im going to turn this into a game">
+      <created>1696352590488</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1696352590488</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Go die" />
     <MESSAGE value="tired" />
-    <option name="LAST_COMMIT_MESSAGE" value="tired" />
+    <MESSAGE value="i dont know how im going to turn this into a game" />
+    <option name="LAST_COMMIT_MESSAGE" value="i dont know how im going to turn this into a game" />
   </component>
 </project>

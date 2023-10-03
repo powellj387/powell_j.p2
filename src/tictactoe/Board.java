@@ -3,27 +3,35 @@ package tictactoe;
 import java.util.*;
 
 public class Board {
-    private ULHashMap<Position, Piece> board;
+    private HashMap<Position, Piece> board;
     private final int MAX_COLUMNS = 3;
-    private final int MAX_ROWS = 3    ;
+    private final int MAX_ROWS = 3;
+
+    public Board() {
+        board = new HashMap<>();
+        for (int row = 0; row < MAX_ROWS; row++) {
+            for (int column = 0; column < MAX_COLUMNS; column++) {
+                board.put(new Position(row, column), Piece.NONE);
+            }
+        }
+    }
+
     public enum Piece {
         NONE, X, O;
     }
-    public class Position{
+
+    public static class Position {
         int column;
         int row;
 
-        public Position(int row, int column){
+        public Position(int row, int column) {
             this.row = row;
             this.column = column;
         }
 
-        public java.lang.String toString(){
-            StringBuilder string =  new StringBuilder();
-            string.append(row);
-            string.append(", ");
-            string.append(column);
-            return string.toString();
+        @Override
+        public String toString() {
+            return row + ", " + column;
         }
 
         public int getColumn() {
@@ -34,78 +42,51 @@ public class Board {
             return row;
         }
 
-        public boolean equals(java.lang.Object otherObject){
-            boolean returnValue;
-            //returns false if the object taken in is either null or doesn't
-            //belong to the position class
-            if(otherObject==null||getClass() != otherObject.getClass()){
-                returnValue = false;
-                //return true if the objects are the same
-            } else if (this==otherObject) {
-                returnValue = true;
-            }else{
-                //return true if the row/column of the object taken in matches
-                //the other
-                Position otherPosition =(Position) otherObject;
-                returnValue = row==otherPosition.getRow() && column==otherPosition.getColumn();
+        @Override
+        public boolean equals(Object otherObject) {
+            boolean isEqual = false;
+            if (this == otherObject) {
+                isEqual = true;
+            } else if (otherObject != null && getClass() == otherObject.getClass()) {
+                Position otherPosition = (Position) otherObject;
+                isEqual = (row == otherPosition.row && column == otherPosition.column);
             }
-            return returnValue;
+            return isEqual;
         }
 
-        public Board.Position clone(){
-                return new Position(row,column);
+        @Override
+        public int hashCode() {
+            return Objects.hash(row, column);
+        }
+
+        public Position clone() {
+            return new Position(row, column);
         }
     }
 
     public enum State {
-        DRAW,INCOMPLETE,OWINS,XWINS;
+        DRAW, INCOMPLETE, OWINS, XWINS;
     }
 
-    public Board(){
-        board = new ULHashMap<>();
-        for (int row = 0; row < MAX_ROWS; row++) {
-            for (int column = 0; column < MAX_COLUMNS; column++) {
-                board.put(new Position(row, column), Piece.NONE);
-            }
+    public boolean equals(Object otherObject) {
+        boolean isEqual = false;
+        if (this == otherObject) {
+            isEqual = true;
+        } else if (otherObject != null && getClass() == otherObject.getClass()) {
+            Board otherBoard = (Board) otherObject;
+            isEqual = Objects.equals(board, otherBoard.board);
         }
+        return isEqual;
     }
 
-   /* public Board clone() throws java.lang.CloneNotSupportedException{
-        Board cloneBoard = new Board();
-
-        // Copy the elements from the current map to the new map
-        for (Iterator<ULHashMap.Mapping<Position, Piece>> it = board.iterator(); it.hasNext(); ) {
-            ULHashMap.Mapping<Position, Piece> list = it.next();
-            if (list != null) {
-                for(Piece piece:list) {
-                    cloneBoard.put(entry.getKey(), entry.getValue());
-                }
-            }
-        }
-
-        return newMap;
-   }*/
-
-    public boolean equals(java.lang.Object otherObject){
-        boolean returnValue;
-        //returns false if the object taken in is either null or doesn't
-        //belong to the position class
-        if(otherObject==null||getClass() != otherObject.getClass()){
-            returnValue = false;
-            //return true if the objects are the same
-        } else if (this==otherObject) {
-            returnValue = true;
-        }else{
-            //return true if the row/column of the object taken in matches
-            //the other
-            returnValue = Objects.equals(board, ((Board) otherObject).board);
-        }
-        return returnValue;
+    @Override
+    public int hashCode() {
+        return Objects.hash(board);
     }
 
-    public int hashCode(){return Objects.hash(board);}
-
-    public java.lang.String toString(){StringBuilder sb = new StringBuilder();
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
         for (int row = 0; row < MAX_ROWS; row++) {
             for (int column = 0; column < MAX_COLUMNS; column++) {
                 sb.append(getPiece(new Position(row, column)));
@@ -118,7 +99,7 @@ public class Board {
         return sb.toString();
     }
 
-    public void playPiece(Board.Position position, Board.Piece piece) throws IllegalMoveException{
+    public void playPiece(Position position, Piece piece) throws IllegalMoveException {
         if (!isValidPosition(position) || getPiece(position) != Piece.NONE || piece == Piece.NONE) {
             throw new IllegalMoveException();
         }
@@ -126,38 +107,72 @@ public class Board {
     }
 
     public boolean isValidPosition(Position position) {
-        boolean returnValue = false;
         if (position != null) {
-            if(position.getRow()>0&&position.getRow()<MAX_ROWS) {
-                if (position.getColumn() > 0 && position.getColumn() < MAX_COLUMNS) {
-                    if (getPiece(position) == Piece.NONE) {
-                        returnValue = true;
-                    }
-                }
-            }
+            return position.getRow() >= 0 && position.getRow() < MAX_ROWS &&
+                    position.getColumn() >= 0 && position.getColumn() < MAX_COLUMNS &&
+                    getPiece(position) == Piece.NONE;
         }
-        return returnValue;
+        return false;
     }
 
     public Piece getPiece(Position position) {
-        return board.lookup(position);
+        return board.get(position);
     }
 
-    public State getGameState() {
-        // Implement the logic to determine the game state here
-        // You need to check if there's a winning condition for X or O,
-        // if it's a draw, or if the game is incomplete.
-        // Return the appropriate State enum value.
-        // This code will depend on how you implement the game logic.
-        return State.INCOMPLETE;
+    public Board.State getGameState(Board board) {
+        for (int row = 0; row < 3; row++) {
+            if (board.getPiece(new Board.Position(row, 0)) == Board.Piece.X &&
+                    board.getPiece(new Board.Position(row, 1)) == Board.Piece.X &&
+                    board.getPiece(new Board.Position(row, 2)) == Board.Piece.X) {
+                return Board.State.XWINS; // X wins horizontally
+            } else if (board.getPiece(new Board.Position(row, 0)) == Board.Piece.O &&
+                    board.getPiece(new Board.Position(row, 1)) == Board.Piece.O &&
+                    board.getPiece(new Board.Position(row, 2)) == Board.Piece.O) {
+                return Board.State.OWINS; // O wins horizontally
+            }
+        }
+
+        for (int col = 0; col < 3; col++) {
+            if (board.getPiece(new Board.Position(0, col)) == Board.Piece.X &&
+                    board.getPiece(new Board.Position(1, col)) == Board.Piece.X &&
+                    board.getPiece(new Board.Position(2, col)) == Board.Piece.X) {
+                return Board.State.XWINS; // X wins vertically
+            } else if (board.getPiece(new Board.Position(0, col)) == Board.Piece.O &&
+                    board.getPiece(new Board.Position(1, col)) == Board.Piece.O &&
+                    board.getPiece(new Board.Position(2, col)) == Board.Piece.O) {
+                return Board.State.OWINS; // O wins vertically
+            }
+        }
+
+        if (board.getPiece(new Board.Position(0, 0)) == Board.Piece.X &&
+                board.getPiece(new Board.Position(1, 1)) == Board.Piece.X &&
+                board.getPiece(new Board.Position(2, 2)) == Board.Piece.X ||
+                board.getPiece(new Board.Position(0, 2)) == Board.Piece.X &&
+                        board.getPiece(new Board.Position(1, 1)) == Board.Piece.X &&
+                        board.getPiece(new Board.Position(2, 0)) == Board.Piece.X) {
+            return Board.State.XWINS; // X wins diagonally
+        } else if (board.getPiece(new Board.Position(0, 0)) == Board.Piece.O &&
+                board.getPiece(new Board.Position(1, 1)) == Board.Piece.O &&
+                board.getPiece(new Board.Position(2, 2)) == Board.Piece.O ||
+                board.getPiece(new Board.Position(0, 2)) == Board.Piece.O &&
+                        board.getPiece(new Board.Position(1, 1)) == Board.Piece.O &&
+                        board.getPiece(new Board.Position(2, 0)) == Board.Piece.O) {
+            return Board.State.OWINS; // O wins diagonally
+        }
+
+        // Check for a draw or incomplete game
+        if (board.emptyPositions().isEmpty()) {
+            return Board.State.DRAW; // It's a draw
+        } else {
+            return Board.State.INCOMPLETE; // The game is still in progress
+        }
     }
 
-    public java.util.Collection<Board.Position> emptyPositions(){
+    public Collection<Position> emptyPositions() {
         List<Position> emptyPositions = new ArrayList<>();
-        for (Iterator<ULHashMap.Mapping<Position, Piece>> it = board.iterator(); it.hasNext(); ) {
-            Position position = it.next().getKey();
-            if (getPiece(position).equals(Piece.NONE)) {
-                emptyPositions.add(position);
+        for (Map.Entry<Position, Piece> entry : board.entrySet()) {
+            if (entry.getValue() == Piece.NONE) {
+                emptyPositions.add(entry.getKey());
             }
         }
         return emptyPositions;

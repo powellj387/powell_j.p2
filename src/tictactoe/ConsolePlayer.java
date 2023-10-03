@@ -12,7 +12,38 @@ public class ConsolePlayer {
         this.in = scanner;
         this.playerPiece = piece;
     }
-    void makeNextMove(Board board){
 
+    public Board.Piece getPlayerPiece(){
+        return playerPiece;
+    }
+    void makeNextMove(Board board) {
+        boolean validMove = false;
+
+        while (!validMove) {
+            out.println("Enter your move (row space column, '1 2'): ");
+            int row, col;
+
+            try {
+                row = in.nextInt();
+                col = in.nextInt();
+            } catch (java.util.InputMismatchException e) {
+                in.nextLine(); // Clear the input buffer
+                out.println("Invalid input. Please enter two numbers separated by a space.");
+                continue;
+            }
+
+            Board.Position position = new Board.Position(row, col);
+
+            if (board.isValidPosition(position) && board.getPiece(position) == Board.Piece.NONE) {
+                try {
+                    board.playPiece(position, playerPiece);
+                    validMove = true;
+                } catch (IllegalMoveException e) {
+                    out.println("Illegal move. Please try again.");
+                }
+            } else {
+                out.println("Invalid move. Please try again.");
+            }
+        }
     }
 }
