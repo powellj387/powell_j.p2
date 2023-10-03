@@ -1,7 +1,5 @@
 package tictactoe;
 
-import org.w3c.dom.Node;
-
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Set;
@@ -87,14 +85,43 @@ public class ULHashMap<K,V> {
     }
 
     public ULHashMap<K, V> clone() {
-        // Returns a shallow copy of this ULHashMap instance.
-        // The hash table structure is copied, but the keys and values are not.
-        return null; // Replace with your implementation.
+        ULHashMap<K, V> newMap = new ULHashMap<>(capacity);
+        for (LinkedList<Mapping<K, V>> list : table) {
+            if (list != null) {
+                for (Mapping<K, V> entry : list) {
+                    newMap.put(entry.getKey(), entry.getValue());
+                }
+            }
+        }
+        return newMap;
     }
 
     public boolean equals(Object otherObject) {
-        // Two ULHashMaps are considered equal if they have the same keys with the same values.
-        return false; // Replace with your implementation.
+       boolean returnValue = false;
+        if (this == otherObject) {
+            returnValue = true;
+        }
+        if (otherObject == null || getClass() != otherObject.getClass()) {
+            returnValue = false;
+        }
+
+        ULHashMap<K, V> otherMap = (ULHashMap<K, V>) otherObject;
+        if (size() != otherMap.size()) {
+            returnValue = false;
+        }
+
+        for (LinkedList<Mapping<K, V>> list : table) {
+            if (list != null) {
+                for (Mapping<K, V> entry : list) {
+                    K key = entry.getKey();
+                    V value = entry.getValue();
+                    if (otherMap.containsKey(key) || value.equals(otherMap.lookup(key))) {
+                        returnValue = true;
+                    }
+                }
+            }
+        }
+        return returnValue;
     }
 
     public Iterator<Mapping<K, V>> iterator() {
@@ -103,36 +130,56 @@ public class ULHashMap<K,V> {
     }
 
     public void insert(K key, V value) {
-        // Inserts the key-value pair.
-        // The key must not be null.
-        // If the insertion causes the hash map's load factor to exceed one, it will
-        // grow its capacity to the next prime number.
+        if (key == null) {
+            throw new IllegalArgumentException("Key cannot be null.");
+        }
+
+        int index = Math.abs(key.hashCode()) % capacity;
+        if (table[index] == null) {
+            table[index] = new LinkedList<>();
+        }
+
+        table[index].add(new Mapping<>(key, value));
+        size++;
+
+        if ((double) size / capacity > 1.0) {
+            resizeTable();
+        }
     }
 
     public void put(K key, V value) {
-        // Overwrites the value stored at key with value.
-        // If key is not in the map, it will be inserted.
-        // If the insertion causes the hash map's load factor to exceed one, it will
-        // grow its capacity to the next prime number.
+        insert(key, value);
     }
 
     public V lookup(K key) {
-        // Returns the value associated with key, or null if this map contains no
-        // mapping for the key.
-        // If the key is not in the map, this will return null.
-        // null may also be returned if the given key was mapped to null.
-        // containsKey can be used to distinguish between the two cases.
-        return null; // Replace with your implementation.
+        int index = Math.abs(key.hashCode()) % capacity;
+        if (table[index] != null) {
+            for (Object entry : table[index]) {
+                if (entry.getKey().equals(key)) {
+                    return entry.getValue();
+                }
+            }
+        }
+        return null;
     }
 
     public boolean containsKey(K key) {
-        // Returns true if this map contains key.
-        return false; // Replace with your implementation.
+        return lookup(key) != null;
     }
 
     public void erase(K key) {
-        // Removes key and its associated value from this map, if the key was present.
-        // Does nothing if the key was not in the map.
+        int index = Math.abs(key.hashCode()) % capacity;
+        if (table[index] != null) {
+            Iterator<Mapping<K, V>> iterator = table[index].iterator();
+            while (iterator.hasNext()) {
+                Mapping<K, V> entry = iterator.next();
+                if (entry.getKey().equals(key)) {
+                    iterator.remove();
+                    size--;
+                    return;
+                }
+            }
+        }
     }
 
     public void clear() {

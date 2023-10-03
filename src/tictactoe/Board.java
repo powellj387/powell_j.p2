@@ -1,9 +1,6 @@
 package tictactoe;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Board {
     private ULHashMap<Position, Piece> board;
@@ -74,7 +71,19 @@ public class Board {
     }
 
     public Board clone() throws java.lang.CloneNotSupportedException{
+        Board cloneBoard = new Board();
 
+        // Copy the elements from the current map to the new map
+        for (Iterator<ULHashMap.Mapping<Position, Piece>> it = board.iterator(); it.hasNext(); ) {
+            ULHashMap.Mapping<Position, Piece> list = it.next();
+            if (list != null) {
+                for(Piece piece:list) {
+                    cloneBoard.put(entry.getKey(), entry.getValue());
+                }
+            }
+        }
+
+        return newMap;
     }
 
     public boolean equals(java.lang.Object otherObject){
@@ -89,7 +98,6 @@ public class Board {
         }else{
             //return true if the row/column of the object taken in matches
             //the other
-            Board otherPosition =(Board) otherObject;
             returnValue = Objects.equals(board, ((Board) otherObject).board);
         }
         return returnValue;
@@ -100,7 +108,7 @@ public class Board {
     public java.lang.String toString(){StringBuilder sb = new StringBuilder();
         for (int row = 0; row < MAX_ROWS; row++) {
             for (int column = 0; column < MAX_COLUMNS; column++) {
-                sb.append(board.get(new Position(row, column)));
+                sb.append(getPiece(new Position(row, column)));
                 if (column < MAX_COLUMNS - 1) {
                     sb.append(" ");
                 }
@@ -111,7 +119,7 @@ public class Board {
     }
 
     public void playPiece(Board.Position position, Board.Piece piece) throws IllegalMoveException{
-        if (!isValidPosition(position) || board.get(position) != Piece.NONE || piece == Piece.NONE) {
+        if (!isValidPosition(position) || getPiece(position) != Piece.NONE || piece == Piece.NONE) {
             throw new IllegalMoveException();
         }
         board.put(position, piece);
@@ -132,7 +140,7 @@ public class Board {
     }
 
     public Piece getPiece(Position position) {
-        return board.get(position);
+        return board.lookup(position);
     }
 
     public State getGameState() {
@@ -146,8 +154,9 @@ public class Board {
 
     public java.util.Collection<Board.Position> emptyPositions(){
         List<Position> emptyPositions = new ArrayList<>();
-        for (Position position : board.keySet()) {
-            if (board.get(position) == Piece.NONE) {
+        for (Iterator<ULHashMap.Mapping<Position, Piece>> it = board.iterator(); it.hasNext(); ) {
+            Position position = it.next().getKey();
+            if (getPiece(position).equals(Piece.NONE)) {
                 emptyPositions.add(position);
             }
         }
