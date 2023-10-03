@@ -125,8 +125,36 @@ public class ULHashMap<K,V> {
     }
 
     public Iterator<Mapping<K, V>> iterator() {
-        // Returns an iterator that will visit every key-value pair in this ULHashMap.
-        return null; // Replace with your implementation.
+            // Returns an iterator that will visit every key-value pair in this ULHashMap.
+            return new Iterator<Mapping<K, V>>() {
+                private int currentIndex = 0;
+                private Iterator<Mapping<K, V>> currentIterator = null;
+
+                @Override
+                public boolean hasNext() {
+                    boolean returnVal = false;
+                    while (currentIndex < capacity) {
+                        if (table[currentIndex] != null) {
+                            if (currentIterator == null || !currentIterator.hasNext()) {
+                                currentIterator = table[currentIndex].iterator();
+                            }
+                            if (currentIterator.hasNext()) {
+                                returnVal = true;
+                            }
+                        }
+                        currentIndex++;
+                    }
+                    return returnVal;
+                }
+
+                @Override
+                public Mapping<K, V> next() {
+                    if (!hasNext()) {
+                        throw new java.util.NoSuchElementException();
+                    }
+                    return currentIterator.next();
+                }
+            };
     }
 
     public void insert(K key, V value) {
@@ -147,6 +175,26 @@ public class ULHashMap<K,V> {
         }
     }
 
+    private void resizeTable() {
+        int newCapacity = PrimeNumberGenerator.nextPrime(capacity);
+        LinkedList<Mapping<K, V>>[] newTable = new LinkedList[newCapacity];
+
+        for (LinkedList<Mapping<K, V>> list : table) {
+            if (list != null) {
+                for (Mapping<K, V> entry : list) {
+                    int newIndex = Math.abs(entry.getKey().hashCode()) % newCapacity;
+                    if (newTable[newIndex] == null) {
+                        newTable[newIndex] = new LinkedList<>();
+                    }
+                    newTable[newIndex].add(entry);
+                }
+            }
+        }
+
+        table = newTable;
+        capacity = newCapacity;
+    }
+
     public void put(K key, V value) {
         insert(key, value);
     }
@@ -154,9 +202,10 @@ public class ULHashMap<K,V> {
     public V lookup(K key) {
         int index = Math.abs(key.hashCode()) % capacity;
         if (table[index] != null) {
-            for (Object entry : table[index]) {
-                if (entry.getKey().equals(key)) {
-                    return entry.getValue();
+            while(table[index].iterator().hasNext()) {
+                Mapping<K, V> item = iterator().next();
+                if (item.getKey().equals(key)) {
+                    return item.getValue();
                 }
             }
         }
@@ -197,7 +246,7 @@ public class ULHashMap<K,V> {
 
     public boolean empty() {
         // Checks whether the map is empty.
-        return false; // Replace with your implementation.
+        return size==0; // Replace with your implementation.
     }
 
     public int tableSize() {

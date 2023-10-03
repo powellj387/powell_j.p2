@@ -70,7 +70,7 @@ public class Board {
         }
     }
 
-    public Board clone() throws java.lang.CloneNotSupportedException{
+   /* public Board clone() throws java.lang.CloneNotSupportedException{
         Board cloneBoard = new Board();
 
         // Copy the elements from the current map to the new map
@@ -84,7 +84,7 @@ public class Board {
         }
 
         return newMap;
-    }
+   }*/
 
     public boolean equals(java.lang.Object otherObject){
         boolean returnValue;
@@ -125,7 +125,7 @@ public class Board {
         board.put(position, piece);
     }
 
-    private boolean isValidPosition(Position position) {
+    public boolean isValidPosition(Position position) {
         boolean returnValue = false;
         if (position != null) {
             if(position.getRow()>0&&position.getRow()<MAX_ROWS) {
