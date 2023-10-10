@@ -2,7 +2,7 @@ package tictactoe;
 import java.util.Scanner;
 import java.io.PrintStream;
 public class Main {
-    public static void main(String[] args) throws IllegalMoveException {
+    public static void main(String[] args) throws IllegalMoveException, CloneNotSupportedException {
         Scanner scanner = new Scanner(System.in);
         PrintStream out = System.out;
 
@@ -34,7 +34,7 @@ public class Main {
             currentPlayer.makeNextMove(board);
 
             // Check for the game result
-            Board.State gameState = board.getGameState(board);
+            Board.State gameState = Board.getGameState(board);
             if (gameState == Board.State.XWINS) {
                 out.println("X wins!");
                 break;

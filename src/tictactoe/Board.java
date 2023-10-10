@@ -2,7 +2,7 @@ package tictactoe;
 
 import java.util.*;
 
-public class Board {
+public class Board implements Cloneable{
     int MAX_ROWS = 3;
     int MAX_COLUMNS = 3;
     private HashMap<Position, Piece> board;
@@ -16,8 +16,24 @@ public class Board {
         }
     }
 
+    @Override
+    public Board clone() throws CloneNotSupportedException {
+       Board cloneBoard = (Board) super.clone();
+       cloneBoard.board = new HashMap<>(board);
+       return cloneBoard;
+    }
+
     public enum Piece {
-        NONE, X, O;
+
+        NONE("-"), X("X"), O("O");
+
+        Piece(String s) {
+
+        }
+
+        public String getAbbrev(){
+            return abbrev;
+        }
     }
 
     public static class Position {
@@ -90,7 +106,7 @@ public class Board {
         StringBuilder sb = new StringBuilder();
         for (int row = 0; row < MAX_ROWS; row++) {
             for (int column = 0; column < MAX_COLUMNS; column++) {
-                sb.append(getPiece(new Position(row, column)));
+                sb.append(getPiece(new Position(row, column)).getAbrev());
                 if (column < MAX_COLUMNS - 1) {
                     sb.append(" ");
                 }
@@ -121,7 +137,7 @@ public class Board {
         return board.get(position);
     }
 
-    public Board.State getGameState(Board board) {
+    public static Board.State getGameState(Board board) {
         for (int row = 0; row < 3; row++) {
             if (board.getPiece(new Board.Position(row, 0)) == Board.Piece.X &&
                     board.getPiece(new Board.Position(row, 1)) == Board.Piece.X &&

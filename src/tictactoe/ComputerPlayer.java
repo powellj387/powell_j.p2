@@ -1,12 +1,14 @@
 package tictactoe;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ComputerPlayer implements Player {
 
-    private Board.Piece piece;
-    private Board.Piece oppPiece;
+    private final Board.Piece piece;
+    private final Board.Piece oppPiece;
     private boolean cachingEnabled;
     private Map<String, Integer> cache;
 
@@ -31,58 +33,66 @@ public class ComputerPlayer implements Player {
     }
 
     @Override
-    public void makeNextMove(Board board) throws IllegalMoveException {
-        int bestScore = -99999;
+    public void makeNextMove(Board board) throws IllegalMoveException, CloneNotSupportedException {
+        int bestScore = Integer.MIN_VALUE;
         Board.Position bestMove = null;
-        for (Board.Position pos : board.emptyPositions()) {
-            if (board.isValidPosition(pos)) {
-                board.playPiece(pos, piece);
-                int score = minimax(board, piece);
-                board.playPiece(pos, Board.Piece.NONE);
-                if (score > bestScore) {
-                    bestScore = score;
-                    bestMove = pos;
-                }
+
+        List<Board.Position> emptyPos = (List<Board.Position>) board.emptyPositions();
+        for (Board.Position pos : emptyPos) {
+            Board cloneBoard = board.clone();
+            cloneBoard.playPiece(pos, piece);
+
+            int score = minimax(cloneBoard, oppPiece);
+
+            if (score > bestScore) {
+                bestScore = score;
+                bestMove = pos;
             }
         }
-        board.playPiece(bestMove, piece);
+
+        if (bestMove != null) {
+            board.playPiece(bestMove, piece);
+        }
     }
 
-    private int minimax(Board board, Board.Piece piecePlayed) throws IllegalMoveException {
-        Board.State currentState = board.getGameState(board);
-        if (piecePlayed.equals(Board.Piece.X)) {
-            if (currentState.equals(Board.State.XWINS)) {
-                return 1;
-            } else if (currentState.equals(Board.State.OWINS)) {
-                return -1;
-            } else if (currentState.equals(Board.State.DRAW)) {
-                return 0;
+    private int minimax(Board board, Board.Piece currentPlayer) throws IllegalMoveException, CloneNotSupportedException {
+        Board.State currentState = Board.getGameState(board);
+
+        if (currentState == Board.State.XWINS) {
+            return (currentPlayer == Board.Piece.X) ? 1 : -1;
+        }
+        if (currentState == Board.State.OWINS) {
+            return (currentPlayer == Board.Piece.O) ? -1 : 1;
+        }
+        if (currentState == Board.State.DRAW) {
+            return 0;
+        }
+
+        List<Board.Position> emptyPos = (List<Board.Position>) board.emptyPositions();
+        int bestScore = (currentPlayer == piece) ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+
+        if (emptyPos.isEmpty()) {
+            return 0;
+        }
+
+        for (Board.Position pos : emptyPos) {
+            Board cloneBoard = board.clone();
+            cloneBoard.playPiece(pos, currentPlayer);
+
+            int score = minimax(cloneBoard, switchPiece(currentPlayer));
+
+            if (currentPlayer == piece) {
+                bestScore = Math.max(bestScore, score);
             } else {
-                if (piece.equals(Board.Piece.X)) {
-                    int bestScore = -99999;
-                    for (Board.Position pos : board.emptyPositions()) {
-                        if (board.isValidPosition(pos)) {
-                            board.playPiece(pos, piece);
-                            int score = minimax(board, piece);
-                            board.playPiece(pos, Board.Piece.NONE);
-                            bestScore = Math.max(score, bestScore);
-                        }
-                    }
-                    return bestScore;
-                } else {
-                    int bestScore = 99999;
-                    for (Board.Position pos : board.emptyPositions()) {
-                        if (board.isValidPosition(pos)) {
-                            board.playPiece(pos, oppPiece);
-                            int score = minimax(board, oppPiece);
-                            board.playPiece(pos, Board.Piece.NONE);
-                            bestScore = Math.min(score, bestScore);
-                        }
-                    }
-                    return bestScore;
-                }
+                bestScore = Math.min(bestScore, score);
             }
         }
-        return 0;
+        return bestScore;
     }
+
+    private Board.Piece switchPiece(Board.Piece currentPlayer){
+        return (currentPlayer == Board.Piece.X) ? Board.Piece.O : Board.Piece.X;
+    }
+
 }
+
