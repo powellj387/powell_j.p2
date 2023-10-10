@@ -1,5 +1,5 @@
 package tictactoe;
 
 public interface Player {
-    void makeNextMove(Board board);
+    void makeNextMove(Board board) throws IllegalMoveException;
 }

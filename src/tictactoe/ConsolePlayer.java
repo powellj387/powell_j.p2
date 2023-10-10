@@ -3,7 +3,7 @@ package tictactoe;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-public class ConsolePlayer {
+public class ConsolePlayer implements Player{
     private PrintStream out;
     private Scanner in;
     private Board.Piece playerPiece;
@@ -16,23 +16,26 @@ public class ConsolePlayer {
     public Board.Piece getPlayerPiece(){
         return playerPiece;
     }
-    void makeNextMove(Board board) {
+
+    @Override
+    public void makeNextMove(Board board) {
         boolean validMove = false;
 
         while (!validMove) {
             out.println("Enter your move (row space column, '1 2'): ");
-            int row, col;
+            int row;
+            int column;
 
             try {
                 row = in.nextInt();
-                col = in.nextInt();
+                column = in.nextInt();
             } catch (java.util.InputMismatchException e) {
                 in.nextLine(); // Clear the input buffer
                 out.println("Invalid input. Please enter two numbers separated by a space.");
                 continue;
             }
 
-            Board.Position position = new Board.Position(row, col);
+            Board.Position position = new Board.Position(row, column);
 
             if (board.isValidPosition(position) && board.getPiece(position) == Board.Piece.NONE) {
                 try {

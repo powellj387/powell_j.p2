@@ -100,19 +100,20 @@ public class Board {
     }
 
     public void playPiece(Position position, Piece piece) throws IllegalMoveException {
-        if (!isValidPosition(position) || getPiece(position) != Piece.NONE || piece == Piece.NONE) {
+        if (!isValidPosition(position)) {
             throw new IllegalMoveException();
         }
         board.put(position, piece);
     }
 
     public boolean isValidPosition(Position position) {
+        boolean returnVal = false;
+
         if (position != null) {
-            return position.getRow() >= 0 && position.getRow() < MAX_ROWS &&
-                    position.getColumn() >= 0 && position.getColumn() < MAX_COLUMNS &&
-                    getPiece(position) == Piece.NONE;
+            returnVal = position.getRow() >= 0 && position.getRow() < MAX_ROWS &&
+                    position.getColumn() >= 0 && position.getColumn() < MAX_COLUMNS;
         }
-        return false;
+        return returnVal;
     }
 
     public Piece getPiece(Position position) {

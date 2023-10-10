@@ -2,23 +2,35 @@ package tictactoe;
 import java.util.Scanner;
 import java.io.PrintStream;
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalMoveException {
         Scanner scanner = new Scanner(System.in);
         PrintStream out = System.out;
 
         ConsoleInterface consoleInterface = new ConsoleInterface(scanner, out);
 
-        Board board = new Board();
-        ConsolePlayer playerX = new ConsolePlayer(scanner, out, Board.Piece.X);
-        ConsolePlayer playerO = new ConsolePlayer(scanner, out, Board.Piece.O);
+        Player player1;
+        Player player2;
+        if(consoleInterface.askIfPLayerShouldBeComputer(1)){
+            player1 = new ComputerPlayer(Board.Piece.X);
+        }else{
+            player1 = new ConsolePlayer(scanner, out, Board.Piece.X);
+        }
 
-        ConsolePlayer currentPlayer = playerX;
+        if(consoleInterface.askIfPLayerShouldBeComputer(2)){
+            player2 = new ComputerPlayer(Board.Piece.O);
+        }else{
+            player2 = new ConsolePlayer(scanner, out, Board.Piece.O);
+        }
+
+        Player currentPlayer = player1;
 
         out.println("Tic-Tac-Toe game");
 
+        Board board = new Board();
+
         while (true) {
             out.println(board.toString());
-            out.println(currentPlayer.getPlayerPiece() + "'s turn:");
+            out.println(currentPlayer + "'s turn:");
             currentPlayer.makeNextMove(board);
 
             // Check for the game result
@@ -34,7 +46,7 @@ public class Main {
                 break;
             }
             // Switch to the other player
-            currentPlayer = (currentPlayer == playerX) ? playerO : playerX;
+            currentPlayer = (currentPlayer == player1) ? player2 : player1;
         }
         scanner.close();
     }
