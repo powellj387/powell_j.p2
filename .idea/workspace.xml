@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b50aff81-4e8c-416a-98a0-e84affa33fb1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/tictactoe/ComputerPlayer.java" afterDir="false" />
+    <list default="true" id="b50aff81-4e8c-416a-98a0-e84affa33fb1" name="Changes" comment="minimax kinda works to some extent">
+      <change afterPath="$PROJECT_DIR$/src/test/BoardAndComputerPlayerCompilationStub.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tictactoe/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictactoe/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tictactoe/ConsolePlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictactoe/ConsolePlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tictactoe/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictactoe/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tictactoe/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictactoe/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,10 +37,28 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/julia/IdeaProjects/powell_j.p2"
+    "last_opened_file_path": "C:/Users/julia/IdeaProjects/powell_j.p2/src/test"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\julia\IdeaProjects\powell_j.p2\src\test" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="BoardAndComputerPlayerCompilationStub" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test.BoardAndComputerPlayerCompilationStub" />
+      <module name="powell_j.p2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="tictactoe.Main" />
       <module name="powell_j.p2" />
@@ -60,6 +75,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.BoardAndComputerPlayerCompilationStub" />
       </list>
     </recent_temporary>
   </component>
@@ -72,7 +88,19 @@
       <option name="presentableId" value="Default" />
       <updated>1696011657693</updated>
     </task>
+    <task id="LOCAL-00001" summary="minimax kinda works to some extent">
+      <created>1696912481691</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1696912481691</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="minimax kinda works to some extent" />
+    <option name="LAST_COMMIT_MESSAGE" value="minimax kinda works to some extent" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

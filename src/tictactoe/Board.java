@@ -3,9 +3,9 @@ package tictactoe;
 import java.util.*;
 
 public class Board {
+    int MAX_ROWS = 3;
+    int MAX_COLUMNS = 3;
     private HashMap<Position, Piece> board;
-    private final int MAX_COLUMNS = 3;
-    private final int MAX_ROWS = 3;
 
     public Board() {
         board = new HashMap<>();
@@ -21,8 +21,8 @@ public class Board {
     }
 
     public static class Position {
-        int column;
         int row;
+        int column;
 
         public Position(int row, int column) {
             this.row = row;
@@ -59,6 +59,7 @@ public class Board {
             return Objects.hash(row, column);
         }
 
+        @Override
         public Position clone() {
             return new Position(row, column);
         }
@@ -160,16 +161,17 @@ public class Board {
                         board.getPiece(new Board.Position(2, 0)) == Board.Piece.O) {
             return Board.State.OWINS; // O wins diagonally
         }
-
-        // Check for a draw or incomplete game
+// Check for a draw or incomplete game
         if (board.emptyPositions().isEmpty()) {
-            return Board.State.DRAW; // It's a draw
-        } else {
-            return Board.State.INCOMPLETE; // The game is still in progress
-        }
+                return Board.State.DRAW; // It's a draw
+                } else {
+                return Board.State.INCOMPLETE; // The game is still in progress
+                }
     }
 
-    public Collection<Position> emptyPositions() {
+
+
+public Collection<Position> emptyPositions() {
         List<Position> emptyPositions = new ArrayList<>();
         for (Map.Entry<Position, Piece> entry : board.entrySet()) {
             if (entry.getValue() == Piece.NONE) {
