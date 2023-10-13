@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b50aff81-4e8c-416a-98a0-e84affa33fb1" name="Changes" comment="got the minimax to work">
+    <list default="true" id="b50aff81-4e8c-416a-98a0-e84affa33fb1" name="Changes" comment="got the minimax to work and compilation stub passes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/BoardAndComputerPlayerCompilationStub.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/BoardAndComputerPlayerCompilationStub.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tictactoe/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictactoe/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tictactoe/ComputerPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictactoe/ComputerPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tictactoe/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictactoe/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tictactoe/ULHashMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictactoe/ULHashMap.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,7 +168,14 @@
       <option name="project" value="LOCAL" />
       <updated>1697231712698</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="got the minimax to work and compilation stub passes">
+      <created>1697232810105</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1697232810105</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -179,6 +183,7 @@
     <MESSAGE value="tired" />
     <MESSAGE value="i dont know how im going to turn this into a game" />
     <MESSAGE value="got the minimax to work" />
-    <option name="LAST_COMMIT_MESSAGE" value="got the minimax to work" />
+    <MESSAGE value="got the minimax to work and compilation stub passes" />
+    <option name="LAST_COMMIT_MESSAGE" value="got the minimax to work and compilation stub passes" />
   </component>
 </project>

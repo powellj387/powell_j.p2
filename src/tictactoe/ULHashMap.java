@@ -1,8 +1,6 @@
 package tictactoe;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Set;
+import java.util.*;
 
 public class ULHashMap<K,V> {
     private final int DEFAULT_SIZE = 31;
@@ -115,8 +113,8 @@ public class ULHashMap<K,V> {
                 for (Mapping<K, V> entry : list) {
                     K key = entry.getKey();
                     V value = entry.getValue();
-                    if (otherMap.containsKey(key) || value.equals(otherMap.lookup(key))) {
-                        returnValue = true;
+                    if (!otherMap.containsKey(key) || !value.equals(otherMap.lookup(key))) {
+                        return false;
                     }
                 }
             }
@@ -125,36 +123,35 @@ public class ULHashMap<K,V> {
     }
 
     public Iterator<Mapping<K, V>> iterator() {
-            // Returns an iterator that will visit every key-value pair in this ULHashMap.
-            return new Iterator<Mapping<K, V>>() {
-                private int currentIndex = 0;
-                private Iterator<Mapping<K, V>> currentIterator = null;
+        return new Iterator<Mapping<K, V>>() {
+            private int currentIndex = 0;
+            private Iterator<Mapping<K, V>> currentIterator = null;
 
-                @Override
-                public boolean hasNext() {
-                    boolean returnVal = false;
-                    while (currentIndex < capacity) {
-                        if (table[currentIndex] != null) {
-                            if (currentIterator == null || !currentIterator.hasNext()) {
-                                currentIterator = table[currentIndex].iterator();
-                            }
-                            if (currentIterator.hasNext()) {
-                                returnVal = true;
-                            }
+            @Override
+            public boolean hasNext() {
+                boolean returnVal = false;
+                while (currentIndex < capacity) {
+                    if (table[currentIndex] != null) {
+                        if (currentIterator == null || !currentIterator.hasNext()) {
+                            currentIterator = table[currentIndex].iterator();
                         }
-                        currentIndex++;
+                        if (currentIterator.hasNext()) {
+                            returnVal = true;
+                        }
                     }
-                    return returnVal;
+                    currentIndex++;
                 }
+                return returnVal;
+            }
 
-                @Override
-                public Mapping<K, V> next() {
-                    if (!hasNext()) {
-                        throw new java.util.NoSuchElementException();
-                    }
-                    return currentIterator.next();
+            @Override
+            public Mapping<K, V> next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
                 }
-            };
+                return currentIterator.next();
+            }
+        };
     }
 
     public void insert(K key, V value) {
