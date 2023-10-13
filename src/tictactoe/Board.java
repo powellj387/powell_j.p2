@@ -25,15 +25,7 @@ public class Board implements Cloneable{
 
     public enum Piece {
 
-        NONE("-"), X("X"), O("O");
-
-        Piece(String s) {
-
-        }
-
-        public String getAbbrev(){
-            return abbrev;
-        }
+        NONE, X, O;
     }
 
     public static class Position {
@@ -106,7 +98,9 @@ public class Board implements Cloneable{
         StringBuilder sb = new StringBuilder();
         for (int row = 0; row < MAX_ROWS; row++) {
             for (int column = 0; column < MAX_COLUMNS; column++) {
-                sb.append(getPiece(new Position(row, column)).getAbrev());
+                Position pos = new Position(row,column);
+                if(getPiece(pos)==Piece.NONE){sb.append("-");}
+                else{sb.append(getPiece(new Position(row, column)));}
                 if (column < MAX_COLUMNS - 1) {
                     sb.append(" ");
                 }

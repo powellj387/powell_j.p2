@@ -10,6 +10,7 @@ public class Main {
 
         Player player1;
         Player player2;
+
         if(consoleInterface.askIfPLayerShouldBeComputer(1)){
             player1 = new ComputerPlayer(Board.Piece.X);
         }else{
@@ -29,10 +30,8 @@ public class Main {
         Board board = new Board();
 
         while (true) {
-            out.println(board.toString());
-            out.println(currentPlayer + "'s turn:");
             currentPlayer.makeNextMove(board);
-
+            out.println(board.toString());
             // Check for the game result
             Board.State gameState = Board.getGameState(board);
             if (gameState == Board.State.XWINS) {
