@@ -33,7 +33,7 @@ public class Main {
             currentPlayer.makeNextMove(board);
             out.println(board.toString());
             // Check for the game result
-            Board.State gameState = Board.getGameState(board);
+            Board.State gameState = Board.getGameState();
             if (gameState == Board.State.XWINS) {
                 out.println("X wins!");
                 break;

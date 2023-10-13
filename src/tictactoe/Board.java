@@ -2,10 +2,10 @@ package tictactoe;
 
 import java.util.*;
 
-public class Board implements Cloneable{
-    int MAX_ROWS = 3;
-    int MAX_COLUMNS = 3;
-    private HashMap<Position, Piece> board;
+public class Board implements Cloneable {
+    public static final int MAX_ROWS = 3;
+    public static final int MAX_COLUMNS = 3;
+    private static HashMap<Position, Piece> board;
 
     public Board() {
         board = new HashMap<>();
@@ -28,9 +28,9 @@ public class Board implements Cloneable{
         NONE, X, O;
     }
 
-    public static class Position {
-        int row;
-        int column;
+    public static class Position implements Cloneable{
+        public int row;
+        public int column;
 
         public Position(int row, int column) {
             this.row = row;
@@ -68,7 +68,8 @@ public class Board implements Cloneable{
         }
 
         @Override
-        public Position clone() {
+        public Position clone() throws CloneNotSupportedException {
+            Position clone = (Position) super.clone();
             return new Position(row, column);
         }
     }
@@ -127,52 +128,52 @@ public class Board implements Cloneable{
         return returnVal;
     }
 
-    public Piece getPiece(Position position) {
+    public static Piece getPiece(Position position) {
         return board.get(position);
     }
 
-    public static Board.State getGameState(Board board) {
+    public static Board.State getGameState() {
         for (int row = 0; row < 3; row++) {
-            if (board.getPiece(new Board.Position(row, 0)) == Board.Piece.X &&
-                    board.getPiece(new Board.Position(row, 1)) == Board.Piece.X &&
-                    board.getPiece(new Board.Position(row, 2)) == Board.Piece.X) {
+            if (getPiece(new Board.Position(row, 0)) == Board.Piece.X &&
+                    getPiece(new Board.Position(row, 1)) == Board.Piece.X &&
+                    getPiece(new Board.Position(row, 2)) == Board.Piece.X) {
                 return Board.State.XWINS; // X wins horizontally
-            } else if (board.getPiece(new Board.Position(row, 0)) == Board.Piece.O &&
-                    board.getPiece(new Board.Position(row, 1)) == Board.Piece.O &&
-                    board.getPiece(new Board.Position(row, 2)) == Board.Piece.O) {
+            } else if (getPiece(new Board.Position(row, 0)) == Board.Piece.O &&
+                    getPiece(new Board.Position(row, 1)) == Board.Piece.O &&
+                    getPiece(new Board.Position(row, 2)) == Board.Piece.O) {
                 return Board.State.OWINS; // O wins horizontally
             }
         }
 
         for (int col = 0; col < 3; col++) {
-            if (board.getPiece(new Board.Position(0, col)) == Board.Piece.X &&
-                    board.getPiece(new Board.Position(1, col)) == Board.Piece.X &&
-                    board.getPiece(new Board.Position(2, col)) == Board.Piece.X) {
+            if (getPiece(new Board.Position(0, col)) == Board.Piece.X &&
+                    getPiece(new Board.Position(1, col)) == Board.Piece.X &&
+                    getPiece(new Board.Position(2, col)) == Board.Piece.X) {
                 return Board.State.XWINS; // X wins vertically
-            } else if (board.getPiece(new Board.Position(0, col)) == Board.Piece.O &&
-                    board.getPiece(new Board.Position(1, col)) == Board.Piece.O &&
-                    board.getPiece(new Board.Position(2, col)) == Board.Piece.O) {
+            } else if (getPiece(new Board.Position(0, col)) == Board.Piece.O &&
+                    getPiece(new Board.Position(1, col)) == Board.Piece.O &&
+                    getPiece(new Board.Position(2, col)) == Board.Piece.O) {
                 return Board.State.OWINS; // O wins vertically
             }
         }
 
-        if (board.getPiece(new Board.Position(0, 0)) == Board.Piece.X &&
-                board.getPiece(new Board.Position(1, 1)) == Board.Piece.X &&
-                board.getPiece(new Board.Position(2, 2)) == Board.Piece.X ||
-                board.getPiece(new Board.Position(0, 2)) == Board.Piece.X &&
-                        board.getPiece(new Board.Position(1, 1)) == Board.Piece.X &&
-                        board.getPiece(new Board.Position(2, 0)) == Board.Piece.X) {
+        if (getPiece(new Board.Position(0, 0)) == Board.Piece.X &&
+                getPiece(new Board.Position(1, 1)) == Board.Piece.X &&
+                getPiece(new Board.Position(2, 2)) == Board.Piece.X ||
+                getPiece(new Board.Position(0, 2)) == Board.Piece.X &&
+                        getPiece(new Board.Position(1, 1)) == Board.Piece.X &&
+                        getPiece(new Board.Position(2, 0)) == Board.Piece.X) {
             return Board.State.XWINS; // X wins diagonally
-        } else if (board.getPiece(new Board.Position(0, 0)) == Board.Piece.O &&
-                board.getPiece(new Board.Position(1, 1)) == Board.Piece.O &&
-                board.getPiece(new Board.Position(2, 2)) == Board.Piece.O ||
-                board.getPiece(new Board.Position(0, 2)) == Board.Piece.O &&
-                        board.getPiece(new Board.Position(1, 1)) == Board.Piece.O &&
-                        board.getPiece(new Board.Position(2, 0)) == Board.Piece.O) {
+        } else if (getPiece(new Board.Position(0, 0)) == Board.Piece.O &&
+                getPiece(new Board.Position(1, 1)) == Board.Piece.O &&
+                getPiece(new Board.Position(2, 2)) == Board.Piece.O ||
+                getPiece(new Board.Position(0, 2)) == Board.Piece.O &&
+                        getPiece(new Board.Position(1, 1)) == Board.Piece.O &&
+                        getPiece(new Board.Position(2, 0)) == Board.Piece.O) {
             return Board.State.OWINS; // O wins diagonally
         }
 // Check for a draw or incomplete game
-        if (board.emptyPositions().isEmpty()) {
+        if (emptyPositions().isEmpty()) {
                 return Board.State.DRAW; // It's a draw
                 } else {
                 return Board.State.INCOMPLETE; // The game is still in progress
@@ -181,7 +182,7 @@ public class Board implements Cloneable{
 
 
 
-public Collection<Position> emptyPositions() {
+public static Collection<Position> emptyPositions() {
         List<Position> emptyPositions = new ArrayList<>();
         for (Map.Entry<Position, Piece> entry : board.entrySet()) {
             if (entry.getValue() == Piece.NONE) {

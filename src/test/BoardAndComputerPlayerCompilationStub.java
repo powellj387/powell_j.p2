@@ -1,4 +1,4 @@
-/*
+
 package test;
 
 import java.util.Collection;
@@ -7,13 +7,13 @@ import tictactoe.Board;
 import tictactoe.ComputerPlayer;
 import tictactoe.IllegalMoveException;
 
-*/
+
 /**
  * This class just tests whether your Board and ComputerPlayer classes will compile in my JUnit tests.
  * This class DOES NOT actually test your code.  It just ensures that it compiles.
  * @author Joe Meehean
  *
- *//*
+ */
 
 public class BoardAndComputerPlayerCompilationStub {
 	public static void main(String[] args) throws CloneNotSupportedException, IllegalMoveException {
@@ -50,4 +50,4 @@ public class BoardAndComputerPlayerCompilationStub {
 		player1.makeNextMove(boardA);
 	}
 }
-*/
+
