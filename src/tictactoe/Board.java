@@ -128,11 +128,11 @@ public class Board implements Cloneable {
         return returnVal;
     }
 
-    public static Piece getPiece(Position position) {
+    public Piece getPiece(Position position) {
         return board.get(position);
     }
 
-    public static Board.State getGameState() {
+    public Board.State getGameState() {
         for (int row = 0; row < 3; row++) {
             if (getPiece(new Board.Position(row, 0)) == Board.Piece.X &&
                     getPiece(new Board.Position(row, 1)) == Board.Piece.X &&
@@ -182,7 +182,7 @@ public class Board implements Cloneable {
 
 
 
-public static Collection<Position> emptyPositions() {
+public java.util.Collection<Board.Position> emptyPositions() {
         List<Position> emptyPositions = new ArrayList<>();
         for (Map.Entry<Position, Piece> entry : board.entrySet()) {
             if (entry.getValue() == Piece.NONE) {

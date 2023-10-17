@@ -47,7 +47,7 @@ public class ComputerPlayer implements Player {
     private static int minimax(Board board, int depth, boolean isMaximizing, Board.Piece player)
             throws IllegalMoveException {
         Board.Piece oppPlayer = (player == Board.Piece.X) ? Board.Piece.O:Board.Piece.X;
-        Board.State currState = Board.getGameState();
+        Board.State currState = board.getGameState();
         //Checks to see if there are any winning conditions and if so return a score
         //according to the AI's piece
         if (currState == Board.State.XWINS && player == Board.Piece.X) {

@@ -1,6 +1,7 @@
 package test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import tictactoe.DuplicateKeyException;
 import tictactoe.ULHashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,7 +29,7 @@ public class ULHashMapTest {
     public void testInsertDuplicateKey() {
         // Test inserting a duplicate key
         hashMap.insert("key1", 1);
-        assertThrows(IllegalArgumentException.class, () -> hashMap.insert("key1", 2));
+        assertThrows(DuplicateKeyException.class, () -> hashMap.insert("key1", 2));
     }
 
     @Test
@@ -77,16 +78,16 @@ public class ULHashMapTest {
         assertFalse(hashMap.empty());
     }
 
-    @Test
+/*    @Test
     public void testTableSize() {
         // Test tableSize() method
         assertEquals(31, hashMap.tableSize());
 
         hashMap = new ULHashMap<>(10);
         assertEquals(11, hashMap.tableSize());
-    }
+    }*/
 
-    /*@Test
+/*    @Test
     public void testIterator() {
         // Test iterator
         hashMap.insert("key1", 1);

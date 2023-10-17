@@ -1,6 +1,6 @@
 package tictactoe;
 
-public class IllegalMoveException extends Exception {
+public class IllegalMoveException extends RuntimeException {
     public IllegalMoveException(){
         super();
     }

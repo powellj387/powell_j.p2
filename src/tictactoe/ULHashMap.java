@@ -26,28 +26,23 @@ public class ULHashMap<K,V> {
     public class PrimeNumberGenerator {
 
         public static boolean isPrime(int number) {
-            boolean returnValue = false;
-            if (number <= 1) {
-                returnValue = false;
-            }
-
-            if (number <= 3) {
-                returnValue = true;
-            }
-
-            if (number % 2 == 0 || number % 3 == 0) {
-                returnValue = false;
-            }
-
-            int divisor = 5;
-            while (divisor * divisor <= number) {
-                if (number % divisor == 0 || number % (divisor + 2) == 0) {
-                    returnValue = false;
+            boolean isPrime = true;
+            if (number <= 1 || (number > 2 && number % 2 == 0)) {
+                isPrime = false; // if the value is less than or equal to 1 or an even number greater than 2 it
+                                 // is not prime
+            } else if (number==2|| number==3) {
+                isPrime = true; // if the value is either 2 or 3 which are prime
+                } else {
+                int divisor = 5;
+                while (divisor * divisor <= number) {
+                    if (number % divisor == 0 || number % (divisor + 2) == 0) {
+                        isPrime = false; // The number is divisible by divisor or divisor + 2, so it's not prime
+                        break;
+                    }
+                    divisor += 6;
                 }
-                divisor += 6;
             }
-
-            return returnValue;
+            return isPrime;
         }
 
         public static int nextPrime(int currentPrime) {
@@ -95,26 +90,27 @@ public class ULHashMap<K,V> {
     }
 
     public boolean equals(Object otherObject) {
-       boolean returnValue = false;
-        if (this == otherObject) {
-            returnValue = true;
-        }
-        if (otherObject == null || getClass() != otherObject.getClass()) {
-            returnValue = false;
-        }
+        boolean returnValue = true;
 
-        ULHashMap<K, V> otherMap = (ULHashMap<K, V>) otherObject;
-        if (size() != otherMap.size()) {
-            returnValue = false;
-        }
-
-        for (LinkedList<Mapping<K, V>> list : table) {
-            if (list != null) {
-                for (Mapping<K, V> entry : list) {
-                    K key = entry.getKey();
-                    V value = entry.getValue();
-                    if (!otherMap.containsKey(key) || !value.equals(otherMap.lookup(key))) {
-                        return false;
+        if (this != otherObject) {
+            if (otherObject == null || getClass() != otherObject.getClass()) {
+                returnValue = false;
+            } else {
+                ULHashMap<K, V> otherMap = (ULHashMap<K, V>) otherObject;
+                if (size() != otherMap.size()) {
+                    returnValue = false;
+                } else {
+                    for (LinkedList<Mapping<K, V>> list : table) {
+                        if (list != null) {
+                            for (Mapping<K, V> entry : list) {
+                                K key = entry.getKey();
+                                V value = entry.getValue();
+                                if (!otherMap.containsKey(key) || !value.equals(otherMap.lookup(key))) {
+                                    returnValue = false;
+                                    break; // No need to continue checking, we already know they are not equal
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -157,18 +153,21 @@ public class ULHashMap<K,V> {
     public void insert(K key, V value) {
         if (key == null) {
             throw new IllegalArgumentException("Key cannot be null.");
-        }
+        }else if(containsKey(key)){
+            throw new DuplicateKeyException("Key already in map");
+        }else {
 
-        int index = Math.abs(key.hashCode()) % capacity;
-        if (table[index] == null) {
-            table[index] = new LinkedList<>();
-        }
+            int index = Math.abs(key.hashCode()) % capacity;
+            if (table[index] == null) {
+                table[index] = new LinkedList<>();
+            }
 
-        table[index].add(new Mapping<>(key, value));
-        size++;
+            table[index].add(new Mapping<>(key, value));
+            size++;
 
-        if ((double) size / capacity > 1.0) {
-            resizeTable();
+            if ((double) size / capacity > 1.0) {
+                resizeTable();
+            }
         }
     }
 
@@ -193,22 +192,29 @@ public class ULHashMap<K,V> {
     }
 
     public void put(K key, V value) {
+        erase(key);
         insert(key, value);
     }
 
     public V lookup(K key) {
+        // Calculate the index for the given key
         int index = Math.abs(key.hashCode()) % capacity;
-        if (table[index] != null) {
-            while(table[index].iterator().hasNext()) {
-                Mapping<K, V> item = iterator().next();
-                if (item.getKey().equals(key)) {
-                    return item.getValue();
+
+        // Get the linked list at the calculated index
+        LinkedList<Mapping<K, V>> list = table[index];
+
+        if (list != null) {
+            // Iterate through the list to find the key
+            for (Mapping<K, V> entry : list) {
+                if (entry.getKey().equals(key)) {
+                    return entry.getValue(); // Return the associated value if the key is found
                 }
             }
         }
+
+        // Key not found, return null
         return null;
     }
-
     public boolean containsKey(K key) {
         return lookup(key) != null;
     }
