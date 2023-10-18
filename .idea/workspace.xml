@@ -5,19 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b50aff81-4e8c-416a-98a0-e84affa33fb1" name="Changes" comment="so much done however none of it works together">
+      <change afterPath="$PROJECT_DIR$/src/test/BoardTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/ComputerPlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/ComputerPlayerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/ULHashMapTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/ULHashMapTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tictactoe/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictactoe/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tictactoe/ComputerPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictactoe/ComputerPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tictactoe/ComputerPlayerWithCaching.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictactoe/ComputerPlayerWithCaching.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tictactoe/ConsoleInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictactoe/ConsoleInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tictactoe/ConsolePlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictactoe/ConsolePlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tictactoe/DuplicateKeyException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictactoe/DuplicateKeyException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tictactoe/IllegalMoveException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictactoe/IllegalMoveException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tictactoe/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictactoe/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tictactoe/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictactoe/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tictactoe/ULHashMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictactoe/ULHashMap.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +56,20 @@
       <recent name="C:\Users\julia\IdeaProjects\powell_j.p2\src\test" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ULHashMapTest">
+  <component name="RunManager" selected="Application.ULHashMapCompilationStub">
+    <configuration name="BoardAndComputerPlayerCompilationStub" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test.BoardAndComputerPlayerCompilationStub" />
+      <module name="powell_j.p2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="tictactoe.Main" />
       <module name="powell_j.p2" />
@@ -93,6 +96,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="BoardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="powell_j.p2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.BoardTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ULHashMapTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="powell_j.p2" />
       <extension name="coverage">
@@ -108,45 +126,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ULHashMapTest.testIterator" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="powell_j.p2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.ULHashMapTest" />
-      <option name="METHOD_NAME" value="testIterator" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ULHashMapTest.testTableSize" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="powell_j.p2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.ULHashMapTest" />
-      <option name="METHOD_NAME" value="testTableSize" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ULHashMapTest" />
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.ULHashMapCompilationStub" />
-        <item itemvalue="JUnit.ULHashMapTest.testIterator" />
-        <item itemvalue="JUnit.ULHashMapTest.testTableSize" />
+        <item itemvalue="Application.BoardAndComputerPlayerCompilationStub" />
+        <item itemvalue="JUnit.BoardTest" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.ULHashMapTest" />
       </list>
     </recent_temporary>
   </component>
@@ -208,7 +194,14 @@
       <option name="project" value="LOCAL" />
       <updated>1697594153995</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="so much done however none of it works together">
+      <created>1697627686827</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1697627686827</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

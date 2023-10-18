@@ -4,7 +4,6 @@ import java.util.Iterator;
 
 import tictactoe.ULHashMap;
 
-
 public class ULHashMapCompilationStub {
 
 	public static void main(String[] args) {
