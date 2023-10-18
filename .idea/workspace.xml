@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b50aff81-4e8c-416a-98a0-e84affa33fb1" name="Changes" comment="got the minimax to work and compilation stub passes">
-      <change afterPath="$PROJECT_DIR$/src/tictactoe/DuplicateKeyException.java" afterDir="false" />
+    <list default="true" id="b50aff81-4e8c-416a-98a0-e84affa33fb1" name="Changes" comment="compilation stub passes as well as almost have ULHashMap working">
+      <change afterPath="$PROJECT_DIR$/src/test/ComputerPlayerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/ULHashMapCompilationStub.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tictactoe/ComputerPlayerWithCaching.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/BoardTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/ULHashMapTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/ULHashMapTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tictactoe/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictactoe/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tictactoe/ComputerPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictactoe/ComputerPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tictactoe/IllegalMoveException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictactoe/IllegalMoveException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tictactoe/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictactoe/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tictactoe/ULHashMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictactoe/ULHashMap.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,23 +38,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/julia/IdeaProjects/powell_j.p2"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="tictactoe" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\julia\IdeaProjects\powell_j.p2\src\test" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\julia\IdeaProjects\powell_j.p2\src\test" />
+    </key>
   </component>
-  <component name="RunManager">
-    <configuration name="BoardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.ULHashMapCompilationStub">
+    <configuration name="ULHashMapCompilationStub" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test.ULHashMapCompilationStub" />
       <module name="powell_j.p2" />
       <extension name="coverage">
         <pattern>
@@ -64,9 +70,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.BoardTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -86,22 +89,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ULHashMapTest.testInsertAndLookup" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="powell_j.p2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.ULHashMapTest" />
-      <option name="METHOD_NAME" value="testInsertAndLookup" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ULHashMapTest.testInsertResizeTable" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="powell_j.p2" />
       <extension name="coverage">
@@ -113,6 +100,22 @@
       <option name="PACKAGE_NAME" value="test" />
       <option name="MAIN_CLASS_NAME" value="test.ULHashMapTest" />
       <option name="METHOD_NAME" value="testInsertResizeTable" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ULHashMapTest.testIterator" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="powell_j.p2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.ULHashMapTest" />
+      <option name="METHOD_NAME" value="testIterator" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -136,11 +139,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ULHashMapCompilationStub" />
+        <item itemvalue="JUnit.ULHashMapTest" />
+        <item itemvalue="JUnit.ULHashMapTest.testIterator" />
         <item itemvalue="JUnit.ULHashMapTest.testTableSize" />
         <item itemvalue="JUnit.ULHashMapTest.testInsertResizeTable" />
-        <item itemvalue="JUnit.ULHashMapTest.testInsertAndLookup" />
-        <item itemvalue="JUnit.ULHashMapTest" />
-        <item itemvalue="JUnit.BoardTest" />
       </list>
     </recent_temporary>
   </component>
@@ -188,7 +191,14 @@
       <option name="project" value="LOCAL" />
       <updated>1697232810105</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="compilation stub passes as well as almost have ULHashMap working">
+      <created>1697571296979</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1697571296979</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -197,6 +207,7 @@
     <MESSAGE value="i dont know how im going to turn this into a game" />
     <MESSAGE value="got the minimax to work" />
     <MESSAGE value="got the minimax to work and compilation stub passes" />
-    <option name="LAST_COMMIT_MESSAGE" value="got the minimax to work and compilation stub passes" />
+    <MESSAGE value="compilation stub passes as well as almost have ULHashMap working" />
+    <option name="LAST_COMMIT_MESSAGE" value="compilation stub passes as well as almost have ULHashMap working" />
   </component>
 </project>

@@ -78,29 +78,6 @@ public class ULHashMapTest {
         assertFalse(hashMap.empty());
     }
 
-/*    @Test
-    public void testTableSize() {
-        // Test tableSize() method
-        assertEquals(31, hashMap.tableSize());
-
-        hashMap = new ULHashMap<>(10);
-        assertEquals(11, hashMap.tableSize());
-    }*/
-
-/*    @Test
-    public void testIterator() {
-        // Test iterator
-        hashMap.insert("key1", 1);
-        hashMap.insert("key2", 2);
-
-        int sum = 0;
-        for (ULHashMap.Mapping<String, Integer> entry : hashMap) {
-            sum += entry.getValue();
-        }
-
-        assertEquals(3, sum); // 1 + 2 (values from key1 and key2)
-    }*/
-
     @Test
     public void testEquals() {
         // Test equals() method
@@ -116,5 +93,18 @@ public class ULHashMapTest {
         hashMap2.insert("key3", 3);
 
         assertFalse(hashMap.equals(hashMap2));
+    }
+
+    @Test
+    public void testIterator() {
+        hashMap.insert("A", 1);
+        hashMap.insert("B", 2);
+        hashMap.insert("C", 3);
+
+        int sum = 0;
+        for (ULHashMap.Mapping<String, Integer> mapping : hashMap) {
+            sum += mapping.getValue();
+        }
+        assertEquals(6, sum);
     }
 }
