@@ -1,3 +1,5 @@
+//@author Julian Powell
+
 package tictactoe;
 import java.util.Scanner;
 import java.io.PrintStream;

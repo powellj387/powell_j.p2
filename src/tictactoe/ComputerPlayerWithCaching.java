@@ -1,5 +1,5 @@
 //@author Julian Powell
-/*
+/* THIS FILE DOES NOT RUN CORRECTLY HOWEVER THIS IS THE PROGRESS ON IMPLIMENTING THE CACHE
 package tictactoe;
 
 import java.util.HashMap;
@@ -7,7 +7,7 @@ import java.util.HashMap;
 public class ComputerPlayerWithCaching {
     private Board.Piece piece = null;
     private static boolean cachingEnabled;
-    private static HashMap<Board, Integer> cache;
+    private static ULHashMap<Board, Integer> cache;
 
     public ComputerPlayerWithCaching(Board.Piece piece) {
         this.piece = piece;
@@ -17,7 +17,7 @@ public class ComputerPlayerWithCaching {
         this.piece = piece;
         this.cachingEnabled = cachingEnabled;
         if (cachingEnabled) {
-            cache = new HashMap<>();
+            cache = new ULHashMap<>();
         }
     }
 
