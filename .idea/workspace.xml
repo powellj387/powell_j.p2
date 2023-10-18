@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b50aff81-4e8c-416a-98a0-e84affa33fb1" name="Changes" comment="so much done however none of it works together">
-      <change afterPath="$PROJECT_DIR$/src/test/BoardTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tictactoe/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictactoe/Board.java" afterDir="false" />
-    </list>
+    <list default="true" id="b50aff81-4e8c-416a-98a0-e84affa33fb1" name="Changes" comment="yikes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,7 +52,7 @@
       <recent name="C:\Users\julia\IdeaProjects\powell_j.p2\src\test" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ULHashMapCompilationStub">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="BoardAndComputerPlayerCompilationStub" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="test.BoardAndComputerPlayerCompilationStub" />
       <module name="powell_j.p2" />
@@ -128,10 +124,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.ULHashMapCompilationStub" />
         <item itemvalue="Application.BoardAndComputerPlayerCompilationStub" />
         <item itemvalue="JUnit.BoardTest" />
-        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.ULHashMapTest" />
       </list>
     </recent_temporary>
@@ -201,7 +197,14 @@
       <option name="project" value="LOCAL" />
       <updated>1697627686827</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="yikes">
+      <created>1697629038637</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1697629038637</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -212,6 +215,7 @@
     <MESSAGE value="got the minimax to work and compilation stub passes" />
     <MESSAGE value="compilation stub passes as well as almost have ULHashMap working" />
     <MESSAGE value="so much done however none of it works together" />
-    <option name="LAST_COMMIT_MESSAGE" value="so much done however none of it works together" />
+    <MESSAGE value="yikes" />
+    <option name="LAST_COMMIT_MESSAGE" value="yikes" />
   </component>
 </project>

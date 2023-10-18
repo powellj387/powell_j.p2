@@ -1,5 +1,4 @@
 //@author Julian Powell
-
 package tictactoe;
 
 public class ComputerPlayer implements Player {
